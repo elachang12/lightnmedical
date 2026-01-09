@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Lightn Medical Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #faf8f1;
+        }
+
+        header {
+            background: white;
+            color: #071a23;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #071a23;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            list-style: none;
+            text-align: center;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+        }
+
+        .nav-links li {
+            border-right: none;
+            padding: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #071a23;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-cta a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-cta a.primary {
+            background: #689ae0;
+            color: white;
+        }
+
+        .nav-cta a.primary:hover {
+            background: #5a8ac8;
+        }
+
+        .nav-cta a.secondary {
+            color: #071a23;
+            border: 1px solid #d9edcc;
+        }
+
+        body {
+            padding-top: 70px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: #689ae0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #5a8ac8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #071a23;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #d9edcc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            color: #071a23;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .services-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .services-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-cta p {
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-cta .btn {
+            background: white;
+            color: #689ae0;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+        }
+
+        .services-cta .btn:hover {
+            background: #f0f0f0;
+        }
+
+        footer {
+            background: #071a23;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .services-cta {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/services.html" style="color: #689ae0; font-weight: 600;">Services</a></li>
+                <li><a href="/providers.html">Providers</a></li>
+                <li><a href="/new-patients.html">New patients</a></li>
+                <li><a href="/about.html">About us</a></li>
+                <li><a href="/weight-loss.html">Weight loss</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/locations.html">Locations</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/contact" class="primary">Schedule an appointment</a>
+                <a href="/contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Services Section Only -->
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Our Medical Services</h1>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #555; font-size: 1.1rem;">
+                At Lightn Medical, we provide comprehensive healthcare services tailored to meet your needs. 
+                Our experienced team is dedicated to delivering personalized care in a comfortable and welcoming 
+                environment for adult patients 18 years and older.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚖️</div>
+                    <h3>Weight Loss Program</h3>
+                    <p>Personalized weight loss plans with medications including semaglutide and tirzepatide, 
+                       weekly check-ins, body composition analysis, and expert-picked labs for comprehensive 
+                       health insights.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Annual Wellness Exams</h3>
+                    <p>Comprehensive annual check-ups to detect disease in early stages and prevent illness, 
+                       keeping you healthy year-round with preventive care and health maintenance.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h3>Chronic Disease Management</h3>
+                    <p>Expert management of chronic conditions including diabetes, high blood pressure, 
+                       thyroid disorders, and other ongoing health concerns with personalized treatment plans 
+                       and regular monitoring.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💉</div>
+                    <h3>Vaccinations</h3>
+                    <p>Complete vaccination services including flu shots, COVID-19, Tdap, pneumonia, shingles, 
+                       and more. Most vaccines kept in stock, with special orders available as needed.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Telemedicine Visits</h3>
+                    <p>Convenient virtual care through our HIPAA-compliant Spruce app for COVID evaluations, 
+                       medication refills, quick questions, and same-day appointments from the comfort of your home.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>Primary Care Services</h3>
+                    <p>Comprehensive primary care for adults including preventive care, acute illness treatment, 
+                       health screenings, and management of common health conditions with personalized attention.</p>
+                </div>
+            </div>
+            
+            <div class="services-cta">
+                <h3>Ready to Experience Our Services?</h3>
+                <p>Take the first step toward better health. Schedule an appointment with our experienced 
+                   healthcare providers today.</p>
+                <a href="/contact" class="btn">Schedule an Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
+
