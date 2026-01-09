@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Providers - Lightn Medical Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #faf8f1;
+        }
+
+        header {
+            background: white;
+            color: #071a23;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #071a23;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            list-style: none;
+            text-align: center;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+        }
+
+        .nav-links li {
+            border-right: none;
+            padding: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #071a23;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-cta a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-cta a.primary {
+            background: #689ae0;
+            color: white;
+        }
+
+        .nav-cta a.primary:hover {
+            background: #5a8ac8;
+        }
+
+        .nav-cta a.secondary {
+            color: #071a23;
+            border: 1px solid #d9edcc;
+        }
+
+        body {
+            padding-top: 70px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: #689ae0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #5a8ac8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #071a23;
+            font-weight: 700;
+        }
+
+        .providers-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .provider-single {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .provider-image {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .provider-single h3 {
+            color: #071a23;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .provider-title {
+            color: #689ae0;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .provider-bio {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .provider-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .provider-details h4 {
+            color: #071a23;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .provider-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .provider-details li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .provider-details li:before {
+            content: "•";
+            color: #689ae0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .providers-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .providers-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .providers-cta p {
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .providers-cta .btn {
+            background: white;
+            color: #689ae0;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+        }
+
+        .providers-cta .btn:hover {
+            background: #f0f0f0;
+        }
+
+        footer {
+            background: #071a23;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .provider-single {
+                padding: 2rem 1.5rem;
+            }
+            
+            .providers-cta {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/providers.html" style="color: #689ae0; font-weight: 600;">Providers</a></li>
+                <li><a href="/new-patients.html">New patients</a></li>
+                <li><a href="/about.html">About us</a></li>
+                <li><a href="/weight-loss.html">Weight loss</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/locations.html">Locations</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/contact" class="primary">Schedule an appointment</a>
+                <a href="/contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Providers Section - ONLY Dr. Brad Venghaus -->
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Meet Our Providers</h1>
+            
+            <div class="providers-intro">
+                <p>At Lightn Medical, we're proud to be led by our founder and medical director, Dr. Brad Venghaus. With years of experience and a commitment to exceptional care, Dr. Venghaus sets the standard for personalized, compassionate healthcare.</p>
+            </div>
+            
+            <div class="provider-single">
+                <div class="provider-image">👨‍⚕️</div>
+                <h3>Dr. Brad Venghaus</h3>
+                <p class="provider-title">Founder & Internal Medicine Physician</p>
+                
+                <div class="provider-bio">
+                    <p>Dr. Brad Venghaus is a board-certified Internal Medicine physician dedicated to serving the Austin community with exceptional healthcare. With a passion for creating meaningful patient-doctor relationships, Dr. Venghaus founded Lightn Medical to revolutionize the primary care experience.</p>
+                    
+                    <p>Dr. Venghaus provides comprehensive care for a wide range of health concerns—from acute illnesses to chronic conditions. His approach combines medical expertise with genuine compassion, ensuring each patient receives personalized attention tailored to their unique health needs.</p>
+                    
+                    <p>He founded Lightn Medical with a vision to create a better way to practice medicine—one that prioritizes both patient well-being and provider satisfaction. Under his leadership, Lightn Medical has grown into a practice known for its welcoming environment, same-day appointments, and commitment to health and happiness.</p>
+                </div>
+                
+                <div class="provider-details">
+                    <h4>Education & Credentials</h4>
+                    <ul>
+                        <li>Board Certified in Internal Medicine</li>
+                        <li>Medical Degree from accredited medical school</li>
+                        <li>Years of experience in primary care and internal medicine</li>
+                        <li>Specialized training in chronic disease management</li>
+                        <li>Active member of professional medical associations</li>
+                    </ul>
+                </div>
+                
+                <div class="provider-details">
+                    <h4>Areas of Expertise</h4>
+                    <ul>
+                        <li>Comprehensive primary care for adults</li>
+                        <li>Chronic disease management (diabetes, hypertension, etc.)</li>
+                        <li>Preventive medicine and wellness exams</li>
+                        <li>Weight loss and metabolic health</li>
+                        <li>Acute illness diagnosis and treatment</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="providers-cta">
+                <h3>Schedule with Dr. Venghaus</h3>
+                <p>Dr. Venghaus is currently accepting new patients. Experience personalized, compassionate care from our founder and medical director.</p>
+                <a href="/contact" class="btn">Schedule an Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

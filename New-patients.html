@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Patients - Lightn Medical Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #faf8f1;
+        }
+
+        header {
+            background: white;
+            color: #071a23;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #071a23;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            list-style: none;
+            text-align: center;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+        }
+
+        .nav-links li {
+            border-right: none;
+            padding: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #071a23;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-cta a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-cta a.primary {
+            background: #689ae0;
+            color: white;
+        }
+
+        .nav-cta a.primary:hover {
+            background: #5a8ac8;
+        }
+
+        .nav-cta a.secondary {
+            color: #071a23;
+            border: 1px solid #d9edcc;
+        }
+
+        body {
+            padding-top: 70px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: #689ae0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #5a8ac8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #071a23;
+            font-weight: 700;
+        }
+
+        .welcome-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .welcome-section h2 {
+            font-size: 1.8rem;
+            color: #071a23;
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-section p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #689ae0;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            color: #071a23;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .step-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .requirements-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem auto;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .requirements-section h3 {
+            color: #071a23;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .requirements-list li:before {
+            content: "✓";
+            color: #689ae0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .form-section {
+            background: #d9edcc;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem auto;
+            max-width: 600px;
+        }
+
+        .form-section h3 {
+            color: #071a23;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .new-patient-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .new-patient-form input,
+        .new-patient-form select,
+        .new-patient-form textarea {
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .new-patient-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .new-patient-form button {
+            background: #689ae0;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .new-patient-form button:hover {
+            background: #5a8ac8;
+        }
+
+        .new-patient-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .new-patient-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .new-patient-cta p {
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .new-patient-cta .btn {
+            background: white;
+            color: #689ae0;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+        }
+
+        .new-patient-cta .btn:hover {
+            background: #f0f0f0;
+        }
+
+        footer {
+            background: #071a23;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .step-card,
+            .requirements-section,
+            .form-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .new-patient-cta {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/providers.html">Providers</a></li>
+                <li><a href="/new-patients.html" style="color: #689ae0; font-weight: 600;">New patients</a></li>
+                <li><a href="/about.html">About us</a></li>
+                <li><a href="/weight-loss.html">Weight loss</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/locations.html">Locations</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/contact" class="primary">Schedule an appointment</a>
+                <a href="/contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- New Patients Section Only -->
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Welcome New Patients</h1>
+            
+            <div class="welcome-section">
+                <h2>Become a Patient at Lightn Medical</h2>
+                <p>We're excited to welcome you to our healthcare family! At Lightn Medical, we provide comprehensive primary care services for adults 18 years and older in the Austin area. Our team is dedicated to making your healthcare experience comfortable, convenient, and personalized.</p>
+                <p>We're currently accepting new patients and offer same-day appointments to ensure you receive timely care when you need it most.</p>
+            </div>
+            
+            <h2 style="text-align: center; color: #071a23; margin: 4rem 0 2rem; font-size: 1.8rem;">How to Become a Patient</h2>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Schedule Your First Appointment</h3>
+                    <p>Contact us to schedule your initial visit. You can call our office or use our online scheduling system. We'll help you choose the right provider for your needs.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Complete Patient Forms</h3>
+                    <p>Before your visit, please complete our new patient forms available through our patient portal. This helps us prepare for your appointment and saves you time.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Bring Required Documents</h3>
+                    <p>Bring your insurance card, photo ID, and any previous medical records to your first appointment. Arrive 15 minutes early to complete any remaining paperwork.</p>
+                </div>
+            </div>
+            
+            <div class="requirements-section">
+                <h3>What to Bring to Your First Visit</h3>
+                <ul class="requirements-list">
+                    <li>Valid photo identification (driver's license, passport, or state ID)</li>
+                    <li>Current insurance card(s)</li>
+                    <li>List of current medications (including dosages)</li>
+                    <li>Previous medical records (if available)</li>
+                    <li>Payment method for any copays or deductibles</li>
+                    <li>Completed patient forms (if not submitted online)</li>
+                </ul>
+            </div>
+            
+            <div class="form-section">
+                <h3>Request to Become a New Patient</h3>
+                <form class="new-patient-form">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <select required>
+                        <option value="">Select Preferred Provider</option>
+                        <option value="dr-brad">Dr. Brad Venghaus</option>
+                        <option value="dr-crear">Dr. Crear Venghaus</option>
+                        <option value="any">Any Available Provider</option>
+                    </select>
+                    <select required>
+                        <option value="">Select Insurance Type</option>
+                        <option value="private">Private Insurance</option>
+                        <option value="medicare">Medicare</option>
+                        <option value="medicaid">Medicaid</option>
+                        <option value="self">Self-Pay</option>
+                    </select>
+                    <textarea placeholder="Briefly describe your reason for seeking care (optional)"></textarea>
+                    <button type="submit">Submit New Patient Request</button>
+                </form>
+            </div>
+            
+            <div class="new-patient-cta">
+                <h3>Ready to Schedule Your First Visit?</h3>
+                <p>Join our healthcare family today and experience personalized, compassionate care from our team of experienced providers.</p>
+                <a href="/tel:+1-860-600-0013" class="btn">Call to Schedule: (860) 600-0013</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

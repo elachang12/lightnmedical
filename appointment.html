@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment | Lightn Medical</title>
+    <style>
+        /* === Base & Navigation Styles === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6; color: #333; background: #ffffff; padding-top: 70px;
+        }
+        header {
+            background: white; color: #071a23; padding: 1rem 2rem;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        nav {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap;
+        }
+        .logo {
+            font-size: 1.3rem; font-weight: 700; color: #071a23;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-links {
+            display: flex; flex-direction: row; gap: 0; list-style: none;
+            text-align: center; white-space: nowrap; flex-wrap: nowrap;
+        }
+        .nav-links li { padding: 0 1rem; }
+        .nav-links a {
+            color: #071a23; text-decoration: none; transition: opacity 0.3s;
+            display: block; padding: 0.5rem 0; font-size: 0.95rem; font-weight: 500; white-space: nowrap;
+        }
+        .nav-links a:hover { opacity: 0.7; }
+        .nav-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
+        .nav-cta a {
+            padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; white-space: nowrap;
+        }
+        .nav-cta a.primary { background: #689ae0; color: white; }
+        .nav-cta a.primary:hover { background: #5a8ac8; }
+        .nav-cta a.secondary { color: #071a23; border: 1px solid #d9edcc; }
+
+        /* === Main Content Container === */
+        .main-container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+
+        /* === Appointment Scheduling Section === */
+        .appointment-section {
+            padding: 5rem 0 3rem;
+        }
+        
+        .appointment-section h1 {
+            font-size: 2.5rem;
+            color: #071a23;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .appointment-section p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Appointment Form Styles */
+        .appointment-form {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .form-step {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #071a23;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #689ae0;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        /* Visit Reason Radio Buttons */
+        .visit-reason-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .visit-reason-option {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .visit-reason-option input[type="radio"] {
+            display: none;
+        }
+        
+        .visit-reason-option label {
+            display: block;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .visit-reason-option input[type="radio"]:checked + label {
+            border-color: #689ae0;
+            background: #f0f7ff;
+            font-weight: 600;
+        }
+        
+        /* Time Slots Grid */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .time-slot {
+            padding: 0.8rem;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .time-slot:hover {
+            border-color: #689ae0;
+            background: #f0f7ff;
+        }
+        
+        .time-slot.selected {
+            border-color: #689ae0;
+            background: #689ae0;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .time-slot.unavailable {
+            background: #f8f9fa;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #e9ecef;
+        }
+        
+        .time-slot.unavailable:hover {
+            background: #f8f9fa;
+            border-color: #e9ecef;
+        }
+        
+        /* Form Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #689ae0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        /* Confirmation Message */
+        .confirmation {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .confirmation-icon {
+            width: 60px;
+            height: 60px;
+            background: #d9edcc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: #071a23;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: #689ae0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #5a8ac8;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #071a23;
+            border: 1px solid #d9edcc;
+        }
+        
+        .btn-secondary:hover {
+            background: #faf8f1;
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        footer {
+            background: #071a23;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .appointment-section h1 { font-size: 2rem; }
+            .main-container { padding: 0 1.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .visit-reason-options { flex-direction: column; }
+            .visit-reason-option { min-width: 100%; }
+            .time-slots { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/providers.html">Providers</a></li>
+                <li><a href="/new-patients.html">New patients</a></li>
+                <li><a href="/about.html">About us</a></li>
+                <li><a href="/weight-loss.html">Weight loss</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/locations.html">Locations</a></li>
+                <li><a href="/appointment.html" style="color: #689ae0; font-weight: 600;">Schedule</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/appointment-form" class="primary">Schedule an appointment</a>
+                <a href="/contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <section class="appointment-section">
+            <h1>Schedule Your Appointment</h1>
+            <p>Book your appointment online with real-time availability from our EMR system. Select your visit reason and preferred time slot.</p>
+            
+            <form id="appointment-form" class="appointment-form">
+                <!-- Step 1: Patient Information -->
+                <div id="step1" class="form-step active">
+                    <div class="form-group">
+                        <label for="visit-reason">Visit Reason *</label>
+                        <div class="visit-reason-options">
+                            <div class="visit-reason-option">
+                                <input type="radio" id="new-patient" name="visit-reason" value="new-patient" required>
+                                <label for="new-patient">New Patient Visit</label>
+                            </div>
+                            <div class="visit-reason-option">
+                                <input type="radio" id="returning-patient" name="visit-reason" value="returning-patient" required>
+                                <label for="returning-patient">Returning Patient Visit</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name *</label>
+                            <input type="text" id="first-name" name="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name *</label>
+                            <input type="text" id="last-name" name="last-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dob">Date of Birth *</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <div></div> <!-- Empty div for spacing -->
+                        <button type="button" class="btn" onclick="nextStep(1)">Next: Select Provider</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Provider Selection -->
+                <div id="step2" class="form-step">
+                    <div class="form-group">
+                        <label for="provider">Select Provider *</label>
+                        <select id="provider" name="provider" required onchange="fetchAvailableSlots()">
+                            <option value="">Select a provider</option>
+                            <option value="dr-brad">Dr. Brad Venghaus (Internal Medicine)</option>
+                            <option value="dr-crear">Dr. Crear Venghaus (Internal Medicine)</option>
+                            <option value="dr-graves">Dr. Graves (Family Medicine)</option>
+                            <option value="dr-pham">Dr. Antoine Pham (Internal Medicine)</option>
+                            <option value="any">Any Available Provider</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointment-date">Preferred Date *</label>
+                        <input type="date" id="appointment-date" name="appointment-date" required min="" onchange="fetchAvailableSlots()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointment-type">Appointment Type *</label>
+                        <select id="appointment-type" name="appointment-type" required onchange="fetchAvailableSlots()">
+                            <option value="">Select type</option>
+                            <option value="annual-exam">Annual Wellness Exam (30 min)</option>
+                            <option value="weight-loss">Weight Loss Consultation (45 min)</option>
+                            <option value="follow-up">Follow-up Visit (15 min)</option>
+                            <option value="sick-visit">Sick Visit (20 min)</option>
+                            <option value="new-patient">New Patient Visit (60 min)</option>
+                        </select>
+                    </div>
+                    
+                    <div id="time-slots-container" style="display: none;">
+                        <div class="form-group">
+                            <label>Available Time Slots</label>
+                            <div id="time-slots" class="time-slots">
+                                <!-- Time slots will be dynamically inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="loading-slots" class="loading" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        <p>Checking EMR for available slots...</p>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">← Back</button>
+                        <button type="button" class="btn" id="next-step-2" onclick="nextStep(2)" disabled>Next: Review & Confirm</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Review & Confirmation -->
+                <div id="step3" class="form-step">
+                    <div class="confirmation" id="review-section">
+                        <div class="confirmation-icon">✓</div>
+                        <h3 style="color: #071a23; margin-bottom: 1rem;">Review Your Appointment</h3>
+                        
+                        <div id="appointment-summary" style="text-align: left; background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                            <!-- Appointment details will be inserted here -->
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Additional Notes (Optional)</label>
+                            <textarea id="notes" name="notes" placeholder="Any specific concerns or questions for your provider..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">← Back</button>
+                        <button type="submit" class="btn" id="submit-appointment">Schedule Appointment</button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Success Message -->
+                <div id="step4" class="form-step">
+                    <div class="confirmation">
+                        <div class="confirmation-icon">✓</div>
+                        <h3 style="color: #071a23; margin-bottom: 1rem;">Appointment Scheduled Successfully!</h3>
+                        <p>Your appointment has been scheduled and added to our EMR system.</p>
+                        <p style="margin-bottom: 2rem;">You will receive a confirmation email with all the details shortly.</p>
+                        <a href="/index.html" class="btn">Return to Homepage</a>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Set minimum date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointment-date').min = today;
+            
+            // Set default date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('appointment-date').value = tomorrow.toISOString().split('T')[0];
+        });
+        
+        let selectedTimeSlot = null;
+        
+        // Form navigation functions
+        function nextStep(currentStep) {
+            // Validate current step before proceeding
+            if (currentStep === 1 && !validateStep1()) return;
+            if (currentStep === 2 && !validateStep2()) return;
+            
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('step' + (currentStep + 1)).classList.add('active');
+            
+            if (currentStep === 2) {
+                updateAppointmentSummary();
+            }
+        }
+        
+        function prevStep(currentStep) {
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('step' + (currentStep - 1)).classList.add('active');
+        }
+        
+        // Validation functions
+        function validateStep1() {
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const dob = document.getElementById('dob').value;
+            const visitReason = document.querySelector('input[name="visit-reason"]:checked');
+            
+            if (!visitReason) {
+                alert('Please select a visit reason (New Patient or Returning Patient)');
+                return false;
+            }
+            
+            if (!firstName || !lastName || !email || !phone || !dob) {
+                alert('Please fill in all required fields');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function validateStep2() {
+            const provider = document.getElementById('provider').value;
+            const date = document.getElementById('appointment-date').value;
+            const type = document.getElementById('appointment-type').value;
+            
+            if (!provider || !date || !type) {
+                alert('Please select a provider, date, and appointment type');
+                return false;
+            }
+            
+            if (!selectedTimeSlot) {
+                alert('Please select an available time slot');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Simulate EMR integration for fetching available slots
+        function fetchAvailableSlots() {
+            const provider = document.getElementById('provider').value;
+            const date = document.getElementById('appointment-date').value;
+            const type = document.getElementById('appointment-type').value;
+            
+            if (!provider || !date || !type) {
+                return;
+            }
+            
+            // Show loading state
+            document.getElementById('loading-slots').style.display = 'block';
+            document.getElementById('time-slots-container').style.display = 'none';
+            document.getElementById('next-step-2').disabled = true;
+            selectedTimeSlot = null;
+            
+            // Simulate API call to EMR system
+            setTimeout(() => {
+                generateTimeSlots();
+                document.getElementById('loading-slots').style.display = 'none';
+                document.getElementById('time-slots-container').style.display = 'block';
+            }, 800);
+        }
+        
+        function generateTimeSlots() {
+            const timeSlotsContainer = document.getElementById('time-slots');
+            timeSlotsContainer.innerHTML = '';
+            
+            // Generate sample time slots (in a real implementation, this would come from EMR API)
+            const timeSlots = [
+                '8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM',
+                '11:00 AM', '11:30 AM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM',
+                '3:00 PM', '3:30 PM', '4:00 PM'
+            ];
+            
+            // Mark some slots as unavailable (simulating EMR data)
+            const unavailableSlots = ['8:00 AM', '9:30 AM', '2:00 PM', '3:30 PM'];
+            
+            timeSlots.forEach(slot => {
+                const isUnavailable = unavailableSlots.includes(slot);
+                const timeSlotElement = document.createElement('div');
+                timeSlotElement.className = `time-slot ${isUnavailable ? 'unavailable' : ''}`;
+                timeSlotElement.textContent = slot;
+                
+                if (!isUnavailable) {
+                    timeSlotElement.addEventListener('click', function() {
+                        // Remove selected class from all slots
+                        document.querySelectorAll('.time-slot').forEach(s => {
+                            s.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked slot
+                        this.classList.add('selected');
+                        selectedTimeSlot = slot;
+                        document.getElementById('next-step-2').disabled = false;
+                    });
+                }
+                
+                timeSlotsContainer.appendChild(timeSlotElement);
+            });
+        }
+        
+        function updateAppointmentSummary() {
+            const summary = document.getElementById('appointment-summary');
+            const visitReason = document.querySelector('input[name="visit-reason"]:checked');
+            const provider = document.getElementById('provider');
+            const date = document.getElementById('appointment-date');
+            const type = document.getElementById('appointment-type');
+            
+            summary.innerHTML = `
+                <p><strong>Visit Reason:</strong> ${visitReason ? (visitReason.value === 'new-patient' ? 'New Patient Visit' : 'Returning Patient Visit') : ''}</p>
+                <p><strong>Patient:</strong> ${document.getElementById('first-name').value} ${document.getElementById('last-name').value}</p>
+                <p><strong>Provider:</strong> ${provider.options[provider.selectedIndex].text}</p>
+                <p><strong>Date:</strong> ${new Date(date.value).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <p><strong>Time:</strong> ${selectedTimeSlot}</p>
+                <p><strong>Appointment Type:</strong> ${type.options[type.selectedIndex].text}</p>
+                <p><strong>Contact:</strong> ${document.getElementById('email').value} | ${document.getElementById('phone').value}</p>
+            `;
+        }
+        
+        // Form submission
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, this would submit to your backend/EMR API
+            // For demo purposes, we'll simulate a successful submission
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step4').classList.add('active');
+            
+            // Here you would typically:
+            // 1. Send data to your server
+            // 2. Server would integrate with EMR (Epic, Cerner, etc.)
+            // 3. Create the appointment in the EMR system
+            // 4. Send confirmation email
+        });
+    </script>
+</body>
+</html>
