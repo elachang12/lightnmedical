@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightn Medical Center - Primary Care in Austin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: white;
+            color: #071a23;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #071a23;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            list-style: none;
+            text-align: center;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+        }
+
+        .nav-links li {
+            border-right: none;
+            padding: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #071a23;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-cta a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-cta a.primary {
+            background: #689ae0;
+            color: white;
+        }
+
+        .nav-cta a.primary:hover {
+            background: #5a8ac8;
+        }
+
+        .nav-cta a.secondary {
+            color: #071a23;
+            border: 1px solid #d9edcc;
+        }
+
+        body {
+            padding-top: 70px;
+        }
+
+        .hero {
+            background: #faf8f1;
+            color: #071a23;
+            padding: 4rem 2rem;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: #689ae0;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            height: 400px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: #689ae0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #5a8ac8;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #071a23;
+            border: 2px solid #d9edcc;
+        }
+
+        .btn-outline:hover {
+            background: #faf8f1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .blue-section {
+            background: #689ae0;
+            color: white;
+            text-align: center;
+        }
+
+        .blue-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .blue-section p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .feature-item a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .feature-item a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .about-section {
+            background: #faf8f1;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #071a23;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            height: 400px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .insurance-section {
+            background: #d9edcc;
+            color: #071a23;
+            text-align: center;
+        }
+
+        .insurance-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .insurance-section p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .insurance-form {
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .insurance-form input {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .insurance-form input::placeholder {
+            color: #999;
+        }
+
+        .insurance-form button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #689ae0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .insurance-form button:hover {
+            background: #5a8ac8;
+        }
+
+        .insurance-disclaimer {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
+        footer {
+            background: #071a23;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#providers">Providers</a></li>
+                <li><a href="#new-patients">New patients</a></li>
+                <li><a href="#about">About us</a></li>
+                <li><a href="#weight-loss">Weight loss</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#locations">Locations</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="primary">Schedule an appointment</a>
+                <a href="#contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Primary care for your <em>health & happiness</em></h1>
+            <p>At Lightn Medical, we provide comprehensive healthcare services to meet your needs. Our experienced team is dedicated to delivering personalized care in a comfortable and welcoming environment for adult patients 18 years and older.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn">Schedule an appointment</a>
+                <a href="#contact" class="btn btn-outline">Find a location</a>
+            </div>
+        </div>
+        <div class="hero-image">🏥</div>
+    </section>
+
+    <!-- Primary Care Overview Section -->
+    <section class="section blue-section">
+        <div class="container">
+            <h2>Comprehensive primary care for a healthier you</h2>
+            <p>At Lightn Medical, we're committed to helping you live a happier, healthier life with our exceptional primary care services. Our expert team of healthcare professionals is here to offer personalized care in a friendly and welcoming environment, focused on your well-being.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏥</div>
+                    <h4>Primary care</h4>
+                    <p>See what makes Lightn the foremost primary care clinic for adults 18yo+ in Austin and the surrounding areas.</p>
+                    <a href="#services">Schedule a visit</a>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Same Day Appointments</h4>
+                    <p>We offer same day appointments to ensure you receive the care you need, when you need it.</p>
+                    <a href="#contact">Schedule now</a>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">⚖️</div>
+                    <h4>Weight Loss</h4>
+                    <p>Our weight loss program is designed to help you achieve your goals through personalized plans.</p>
+                    <a href="#weight-loss">Learn more</a>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <h4>Insurance Coverage</h4>
+                    <p>We accept a wide range of insurance plans to make healthcare accessible for all.</p>
+                    <a href="#insurance">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Care Section -->
+    <section class="section about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Providing quality care for the Austin community</h3>
+                    <p>At Lightn Medical, we are dedicated to delivering exceptional primary care services to our patients in the greater Austin area. Our team of experienced healthcare professionals is committed to providing personalized and comprehensive medical care in a compassionate and welcoming environment.</p>
+                    <a href="#services" class="btn" style="margin-top: 1.5rem;">Learn more</a>
+                </div>
+                <div class="about-image">
+                    🏥
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
