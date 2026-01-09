@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | Lightn Medical</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        header {
+            background: white;
+            color: #071a23;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #071a23;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            list-style: none;
+            text-align: center;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+        }
+
+        .nav-links li {
+            border-right: none;
+            padding: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #071a23;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-cta a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-cta a.primary {
+            background: #689ae0;
+            color: white;
+        }
+
+        .nav-cta a.primary:hover {
+            background: #5a8ac8;
+        }
+
+        .nav-cta a.secondary {
+            color: #071a23;
+            border: 1px solid #d9edcc;
+        }
+
+        body {
+            padding-top: 70px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: #689ae0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #5a8ac8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #071a23;
+            font-weight: 700;
+        }
+
+        /* FAQ Section Styles */
+        .faq-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #d9edcc;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #071a23;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #689ae0;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .faq-cta {
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 4rem;
+        }
+
+        .faq-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .faq-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-cta .btn {
+            background: white;
+            color: #689ae0;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+        }
+
+        .faq-cta .btn:hover {
+            background: #f0f0f0;
+        }
+
+        footer {
+            background: #071a23;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .faq-question {
+                font-size: 1rem;
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="providers.html">Providers</a></li>
+                <li><a href="new-patients.html">New patients</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="weight-loss.html">Weight loss</a></li>
+                <li><a href="faq.html" style="color: #689ae0; font-weight: 600;">FAQ</a></li>
+                <li><a href="locations.html">Locations</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="primary">Schedule an appointment</a>
+                <a href="#contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- FAQ Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-intro">
+                    <p>Find answers to common questions about Lightn Medical, our services, appointments, insurance, and more. If you don't see your question answered here, please don't hesitate to contact us directly.</p>
+                </div>
+                
+                <div class="faq-container">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <div class="faq-question">What insurance plans do you accept?</div>
+                        <div class="faq-answer">
+                            <p>We accept most major insurance plans including Blue Cross Blue Shield (excluding "My Blue Health" plans), UnitedHealthcare, Aetna, Cigna, and Medicare. Please contact our office to verify your specific coverage. We're committed to making healthcare accessible and will work with your insurance to maximize your benefits.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <div class="faq-question">Do you accept new patients?</div>
+                        <div class="faq-answer">
+                            <p>Yes! We are actively accepting new patients 18 years and older. We welcome individuals looking for comprehensive primary care services in the Austin area. You can schedule your first appointment online or by calling our office directly.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <div class="faq-question">What is your cancellation policy?</div>
+                        <div class="faq-answer">
+                            <p>We request that you cancel or reschedule appointments at least 24 hours in advance whenever possible. This allows us to offer the time slot to other patients in need of care. Patients who arrive more than 15 minutes late may be asked to reschedule to ensure we can provide proper care to all our patients.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <div class="faq-question">What services are included in a wellness exam?</div>
+                        <div class="faq-answer">
+                            <p>Most insurance plans cover one annual wellness exam per year at no cost to you. This typically includes a comprehensive health review, preventive screenings, and age-appropriate health assessments. However, addressing new health concerns or managing chronic conditions during the same visit may involve additional charges. Our team can help you understand what your specific insurance covers.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 5 -->
+                    <div class="faq-item">
+                        <div class="faq-question">How do I get prescription refills?</div>
+                        <div class="faq-answer">
+                            <p>For prescription refills, please contact your pharmacy directly and they will send us a refill request. For controlled substances, you may need to schedule an appointment. We recommend requesting refills at least one week before you run out of medication to allow for processing time.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 6 -->
+                    <div class="faq-item">
+                        <div class="faq-question">Do you offer telemedicine appointments?</div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer telemedicine visits for many types of appointments through our secure, HIPAA-compliant platform. This is convenient for follow-up visits, medication management, and certain types of consultations. Schedule a telemedicine appointment just like you would an in-person visit.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 7 -->
+                    <div class="faq-item">
+                        <div class="faq-question">What should I bring to my first appointment?</div>
+                        <div class="faq-answer">
+                            <p>Please bring your insurance card, photo ID, a list of current medications (including dosages), and any relevant medical records from previous providers. If you've completed new patient forms online, you don't need to bring printed copies. Arriving 15 minutes early will help ensure we have all necessary information.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ CTA -->
+                <div class="faq-cta">
+                    <h2>Still have questions?</h2>
+                    <p>Our team is here to help. Contact us directly for personalized assistance with any questions about our services, insurance, or appointments.</p>
+                    <a href="#contact" class="btn">Contact Us Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Optionally open first FAQ item by default
+            // faqItems[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>

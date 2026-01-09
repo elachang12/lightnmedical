@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Lightn Medical - Austin Primary Care</title>
+    <style>
+        /* [All previous CSS styles remain exactly the same until the new section] */
+        
+        /* Previous CSS code here... */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #ffffff; }
+        header { background: white; color: #071a23; padding: 1rem 2rem; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; }
+        .logo { font-size: 1.3rem; font-weight: 700; color: #071a23; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-links { display: flex; flex-direction: row; gap: 0; list-style: none; text-align: center; white-space: nowrap; flex-wrap: nowrap; }
+        .nav-links li { border-right: none; padding: 0 1rem; }
+        .nav-links a { color: #071a23; text-decoration: none; transition: opacity 0.3s; display: block; padding: 0.5rem 0; font-size: 0.95rem; font-weight: 500; white-space: nowrap; }
+        .nav-links a:hover { opacity: 0.7; }
+        .nav-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
+        .nav-cta a { padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem; text-decoration: none; white-space: nowrap; }
+        .nav-cta a.primary { background: #689ae0; color: white; }
+        .nav-cta a.primary:hover { background: #5a8ac8; }
+        .nav-cta a.secondary { color: #071a23; border: 1px solid #d9edcc; }
+        body { padding-top: 70px; }
+        .btn { display: inline-block; padding: 0.75rem 1.8rem; background: #689ae0; color: white; text-decoration: none; border-radius: 4px; transition: background 0.3s; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; }
+        .btn:hover { background: #5a8ac8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .about-hero { padding: 5rem 0 3rem; text-align: left; max-width: 800px; margin: 0 auto; }
+        .about-hero h1 { font-size: 2.8rem; color: #071a23; margin-bottom: 1.5rem; font-weight: 700; line-height: 1.2; }
+        .about-hero h1 em { font-style: italic; color: #689ae0; }
+        .about-hero p { font-size: 1.2rem; color: #555; line-height: 1.7; margin-bottom: 2rem; }
+        .core-benefits { padding: 3rem 0; }
+        .core-benefits h2 { font-size: 2rem; color: #071a23; margin-bottom: 2rem; font-weight: 700; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .benefit-item { padding: 1.5rem; border-left: 4px solid #689ae0; background: #faf8f1; border-radius: 0 8px 8px 0; }
+        .benefit-item h3 { color: #071a23; margin-bottom: 0.8rem; font-size: 1.2rem; font-weight: 700; }
+        .benefit-item p { color: #555; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+        .benefit-item a { color: #689ae0; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-block; }
+        .benefit-item a:hover { text-decoration: underline; }
+        .community-section { padding: 4rem 0; background: #f8f9fa; border-radius: 12px; margin: 3rem 0; }
+        .community-content { max-width: 800px; margin: 0 auto; text-align: left; }
+        .community-content h2 { font-size: 1.8rem; color: #071a23; margin-bottom: 1.5rem; font-weight: 700; }
+        .community-content p { font-size: 1.1rem; color: #555; line-height: 1.7; margin-bottom: 2rem; }
+
+        /* NEW: Founding Physician Section */
+        .founder-section {
+            padding: 4rem 0;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            margin: 3rem 0;
+        }
+        
+        .founder-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .founder-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .founder-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        
+        .founder-titles h3 {
+            font-size: 1.8rem;
+            color: #071a23;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .founder-titles p {
+            color: #689ae0;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .founder-bio {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .founder-bio p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .founder-quote {
+            padding: 2rem;
+            background: #f8f9fa;
+            border-left: 4px solid #689ae0;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .founder-quote p {
+            margin-bottom: 1rem;
+        }
+        
+        .quote-author {
+            font-weight: 600;
+            color: #071a23;
+            font-style: normal;
+            font-size: 0.95rem;
+        }
+
+        /* Insurance Section */
+        .insurance-section { padding: 3rem 0; text-align: left; }
+        .insurance-section h2 { font-size: 1.8rem; color: #071a23; margin-bottom: 1.5rem; font-weight: 700; }
+        .insurance-form { max-width: 500px; margin: 2rem 0; }
+        .insurance-form input { width: 100%; padding: 0.75rem; border: 2px solid #d9edcc; border-radius: 4px; margin-bottom: 1rem; font-family: inherit; font-size: 0.95rem; }
+        .insurance-form input:focus { outline: none; border-color: #689ae0; }
+        .insurance-form button { width: 100%; padding: 0.75rem; background: #689ae0; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+        .insurance-form button:hover { background: #5a8ac8; }
+        .insurance-disclaimer { font-size: 0.85rem; color: #666; margin-top: 1.5rem; font-style: italic; line-height: 1.5; }
+        
+        /* CTA Section */
+        .about-cta { padding: 4rem 0; text-align: left; }
+        .about-cta h2 { font-size: 1.8rem; color: #071a23; margin-bottom: 1rem; font-weight: 700; }
+        .about-cta p { font-size: 1.1rem; color: #555; margin-bottom: 2rem; max-width: 600px; }
+        
+        footer { background: #071a23; color: white; padding: 2rem; text-align: center; font-size: 0.9rem; margin-top: 4rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-hero h1 { font-size: 2.2rem; }
+            .about-hero p { font-size: 1.1rem; }
+            .core-benefits h2, .community-content h2, .insurance-section h2, .about-cta h2 { font-size: 1.6rem; }
+            .founder-header { flex-direction: column; text-align: center; gap: 1rem; }
+            .founder-titles { text-align: center; }
+            .founder-bio { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="providers.html">Providers</a></li>
+                <li><a href="new-patients.html">New patients</a></li>
+                <li><a href="about.html" style="color: #689ae0; font-weight: 600;">About us</a></li>
+                <li><a href="weight-loss.html">Weight loss</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="locations.html">Locations</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="primary">Schedule an appointment</a>
+                <a href="#contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <h1>Primary care for your <em>health & happiness</em></h1>
+            <p>At Lightn Medical, we provide comprehensive healthcare services to meet your needs. Our experienced team is dedicated to delivering personalized care in a comfortable and welcoming environment for adult patients 18 years and older.</p>
+            <a href="#contact" class="btn">Schedule an appointment</a>
+        </section>
+
+        <!-- Core Benefits Section -->
+        <section class="core-benefits">
+            <h2>Comprehensive primary care for a healthier you</h2>
+            <p>At Lightn Medical, we're committed to helping you live a happier, healthier life with our exceptional primary care services. Our expert team of healthcare professionals is here to offer personalized care in a friendly and welcoming environment, focused on your well-being.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h3>Primary care</h3>
+                    <p>See what makes Lightn the foremost primary care clinic for adults 18yo+ in Austin and the surrounding areas.</p>
+                    <a href="services.html">Schedule a visit →</a>
+                </div>
+                
+                <div class="benefit-item">
+                    <h3>Same Day Appointments</h3>
+                    <p>We offer same day appointments to ensure you receive the care you need, when you need it.</p>
+                    <a href="#contact">Schedule now →</a>
+                </div>
+                
+                <div class="benefit-item">
+                    <h3>Weight Loss</h3>
+                    <p>Our weight loss program is designed to help you achieve your goals through personalized plans.</p>
+                    <a href="weight-loss.html">Learn more →</a>
+                </div>
+                
+                <div class="benefit-item">
+                    <h3>Insurance Coverage</h3>
+                    <p>We accept a wide range of insurance plans to make healthcare accessible for all.</p>
+                    <a href="#insurance">Learn more →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Care Section -->
+        <section class="community-section">
+            <div class="community-content">
+                <h2>Providing quality care for the Austin community</h2>
+                <p>At Lightn Medical, we are dedicated to delivering exceptional primary care services to our patients in the greater Austin area. Our team of experienced healthcare professionals is committed to providing personalized and comprehensive medical care in a compassionate and welcoming environment.</p>
+                <a href="services.html" class="btn">Learn more about our services</a>
+            </div>
+        </section>
+
+        <!-- NEW: Founding Physician Section -->
+        <section class="founder-section">
+            <div class="founder-content">
+                <div class="founder-header">
+                    <div class="founder-avatar">👨‍⚕️</div>
+                    <div class="founder-titles">
+                        <h3>Dr. Brad Venghaus</h3>
+                        <p>Founder & Internal Medicine Physician</p>
+                        <p style="color: #555; font-weight: normal; font-size: 0.95rem;">Board-Certified Internal Medicine</p>
+                    </div>
+                </div>
+                
+                <div class="founder-bio">
+                    <p>I started Lightn Medical because I saw a gap in how primary care was being delivered. After years in traditional practice, I realized that both patients and providers needed a different approach—one where appointments aren't rushed, where you're treated as a whole person, not just a set of symptoms.</p>
+                    
+                    <p>My focus has always been on building relationships with patients. When you come to Lightn Medical, you're not just getting a prescription or a referral. You're getting a healthcare partner who knows your history, understands your goals, and is invested in your long-term wellbeing.</p>
+                    
+                    <div class="founder-quote">
+                        <p>"The best healthcare happens when patients feel heard and understood. That's why we designed Lightn Medical around longer appointments, same-day availability, and a team that actually has time to get to know you."</p>
+                        <p class="quote-author">— Dr. Brad Venghaus</p>
+                    </div>
+                    
+                    <p>Outside the clinic, I'm an active member of the Austin community. I believe that healthcare extends beyond our office walls, which is why we're involved in local health initiatives and why we've designed our services to be as accessible as possible to everyone in our community.</p>
+                    
+                    <p>My commitment is simple: to provide the kind of care I'd want for my own family. That means evidence-based medicine combined with genuine compassion, and a practice that puts people before paperwork.</p>
+                </div>
+                
+                <a href="providers.html" class="btn">Meet our full team</a>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="about-cta">
+            <h2>Quality care for all</h2>
+            <p>Schedule an appointment online or visit us at one of our conveniently located clinics. Same day appointments available. We treat patients 18 years and older.</p>
+            <a href="#contact" class="btn">Schedule an appointment today</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

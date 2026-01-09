@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal | Lightn Medical</title>
+    <style>
+        /* === Base & Navigation Styles === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6; color: #333; background: #ffffff; padding-top: 70px;
+        }
+        header {
+            background: white; color: #071a23; padding: 1rem 2rem;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        nav {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap;
+        }
+        .logo {
+            font-size: 1.3rem; font-weight: 700; color: #071a23;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-links {
+            display: flex; flex-direction: row; gap: 0; list-style: none;
+            text-align: center; white-space: nowrap; flex-wrap: nowrap;
+        }
+        .nav-links li { padding: 0 1rem; }
+        .nav-links a {
+            color: #071a23; text-decoration: none; transition: opacity 0.3s;
+            display: block; padding: 0.5rem 0; font-size: 0.95rem; font-weight: 500; white-space: nowrap;
+        }
+        .nav-links a:hover { opacity: 0.7; }
+        .nav-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
+        .nav-cta a {
+            padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; white-space: nowrap;
+        }
+        .nav-cta a.primary { background: #689ae0; color: white; }
+        .nav-cta a.primary:hover { background: #5a8ac8; }
+        .nav-cta a.secondary { color: #071a23; border: 1px solid #d9edcc; }
+
+        /* === Main Content Container === */
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* === Patient Portal Hero Section === */
+        .portal-hero {
+            padding: 5rem 0 3rem;
+            text-align: center;
+        }
+        
+        .portal-hero h1 {
+            font-size: 2.8rem;
+            color: #071a23;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .portal-hero p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* === Spruce App Section (Matches Thrivemedical.com) === */
+        .spruce-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .spruce-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .spruce-content h2 {
+            font-size: 2rem;
+            color: #071a23;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .spruce-content p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .spruce-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .spruce-feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .spruce-feature .icon {
+            width: 50px;
+            height: 50px;
+            background: #689ae0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .spruce-feature h4 {
+            color: #071a23;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .app-badge {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #071a23;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .app-badge:hover {
+            transform: translateY(-2px);
+            background: #1a2d3a;
+        }
+
+        /* === Portal Login Section === */
+        .login-section {
+            padding: 4rem 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .login-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #071a23;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .login-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #071a23;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #689ae0;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .forgot-password {
+            color: #689ae0;
+            text-decoration: none;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* === Portal Features Section === */
+        .features-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .features-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #071a23;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: #689ae0;
+        }
+        
+        .feature-item h3 {
+            color: #071a23;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .feature-item p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* === Button Styles === */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            background: #689ae0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background: #5a8ac8;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #071a23;
+            border: 1px solid #d9edcc;
+        }
+        
+        .btn-secondary:hover {
+            background: #faf8f1;
+        }
+
+        /* === CTA Section === */
+        .cta-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            color: #071a23;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            background: #071a23;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .portal-hero h1 { font-size: 2.2rem; }
+            .portal-hero p { font-size: 1.1rem; }
+            .spruce-content h2, .login-section h2, .features-section h2, .cta-section h2 { 
+                font-size: 1.6rem; 
+            }
+            .login-form { padding: 1.5rem; }
+            .main-container { padding: 0 1.5rem; }
+            .app-badges { flex-direction: column; align-items: center; }
+            .app-badge { width: 200px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="providers.html">Providers</a></li>
+                <li><a href="new-patients.html">New patients</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="weight-loss.html">Weight loss</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="locations.html">Locations</a></li>
+                <li><a href="patient-portal.html" style="color: #689ae0; font-weight: 600;">Patient Portal</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="appointment.html" class="primary">Schedule an appointment</a>
+                <a href="#login" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <!-- Patient Portal Hero Section -->
+        <section class="portal-hero">
+            <h1>Lightn Medical Patient Portal</h1>
+            <p>Access your health information, communicate with your care team, and manage your appointments all in one secure place. Your health, your control.</p>
+        </section>
+
+        <!-- Spruce App Section (Matches Thrivemedical.com) -->
+        <section class="spruce-section">
+            <div class="spruce-content">
+                <h2>Experience convenient healthcare with The Spruce App</h2>
+                <p>Securely message our team with Spruce, a HIPAA compliant application, that provides a convenient way for patients to seek help. From medication refills to quick questions, download the Spruce app to save time and keep living your best life.</p>
+                
+                <div class="spruce-features">
+                    <div class="spruce-feature">
+                        <div class="icon">📱</div>
+                        <h4>Secure Messaging</h4>
+                        <p>Private, encrypted communication with your healthcare team</p>
+                    </div>
+                    <div class="spruce-feature">
+                        <div class="icon">💊</div>
+                        <h4>Medication Refills</h4>
+                        <p>Request prescription renewals directly through the app</p>
+                    </div>
+                    <div class="spruce-feature">
+                        <div class="icon">📅</div>
+                        <h4>Appointment Management</h4>
+                        <p>Schedule, reschedule, or cancel appointments easily</p>
+                    </div>
+                    <div class="spruce-feature">
+                        <div class="icon">📄</div>
+                        <h4>Health Records</h4>
+                        <p>Access your test results and health information</p>
+                    </div>
+                </div>
+                
+                <div class="app-badges">
+                    <a href="https://apps.apple.com/app/spruce-health/id1234567890" target="_blank" class="app-badge">Download on the App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.spruce" target="_blank" class="app-badge">Get it on Google Play</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portal Login Section -->
+        <section id="login" class="login-section">
+            <h2>Access Your Patient Portal</h2>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="username">Email Address</label>
+                    <input type="email" id="username" name="username" placeholder="your.email@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#forgot-password" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn">Sign In to Patient Portal</button>
+                
+                <p style="text-align: center; margin-top: 1.5rem; color: #555; font-size: 0.9rem;">
+                    New patient? <a href="new-patients.html" style="color: #689ae0; font-weight: 600;">Create an account</a>
+                </p>
+            </form>
+        </section>
+
+        <!-- Portal Features Section -->
+        <section class="features-section">
+            <h2>Everything You Need in One Place</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📋</div>
+                    <h3>Medical Records</h3>
+                    <p>View your lab results, visit summaries, immunization records, and health history anytime.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3>Secure Messaging</h3>
+                    <p>Communicate directly with your care team for non-urgent medical questions and concerns.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Billing & Payments</h3>
+                    <p>View statements, check balances, and make secure payments online.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📅</div>
+                    <h3>Appointment Management</h3>
+                    <p>Schedule new appointments, view upcoming visits, and check-in online before arrival.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <h3>Forms & Documents</h3>
+                    <p>Complete health forms electronically before your visit to save time.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Access</h3>
+                    <p>Manage healthcare for your family members from a single account (with proper authorization).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Need Help Accessing Your Portal?</h2>
+            <p>Our support team is here to help you get connected to your patient portal. Contact us for assistance with account setup, password resets, or technical support.</p>
+            <a href="tel:+1-512-555-1234" class="btn" style="width: auto; display: inline-block; margin-right: 1rem;">Call Support: (512) 555-1234</a>
+            <a href="mailto:support@lightnmedical.com" class="btn btn-secondary" style="width: auto; display: inline-block;">Email Support</a>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form submission handler
+        document.querySelector('.login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // In a real implementation, this would validate credentials against your backend
+            // For demo purposes, we'll simulate a successful login
+            if (username && password) {
+                alert('Login successful! In a real implementation, you would be redirected to the patient portal dashboard.');
+                // window.location.href = '/portal-dashboard.html';
+            } else {
+                alert('Please enter both email and password.');
+            }
+        });
+        
+        // Forgot password handler
+        document.querySelector('.forgot-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = prompt('Please enter your email address to reset your password:');
+            if (email) {
+                alert(`Password reset instructions have been sent to ${email}. Check your inbox.`);
+            }
+        });
+    </script>
+</body>
+</html>

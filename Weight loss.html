@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Loss Program | Lightn Medical</title>
+    <style>
+        /* === Base & Navigation Styles === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6; color: #333; background: #ffffff; padding-top: 70px;
+        }
+        header {
+            background: white; color: #071a23; padding: 1rem 2rem;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        nav {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap;
+        }
+        .logo {
+            font-size: 1.3rem; font-weight: 700; color: #071a23;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-links {
+            display: flex; flex-direction: row; gap: 0; list-style: none;
+            text-align: center; white-space: nowrap; flex-wrap: nowrap;
+        }
+        .nav-links li { padding: 0 1rem; }
+        .nav-links a {
+            color: #071a23; text-decoration: none; transition: opacity 0.3s;
+            display: block; padding: 0.5rem 0; font-size: 0.95rem; font-weight: 500; white-space: nowrap;
+        }
+        .nav-links a:hover { opacity: 0.7; }
+        .nav-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
+        .nav-cta a {
+            padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; white-space: nowrap;
+        }
+        .nav-cta a.primary { background: #689ae0; color: white; }
+        .nav-cta a.primary:hover { background: #5a8ac8; }
+        .nav-cta a.secondary { color: #071a23; border: 1px solid #d9edcc; }
+
+        /* === Main Content Container === */
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* === THE COMPLETE WEIGHT LOSS PROGRAM SECTION === */
+        .program-section {
+            padding: 5rem 0 3rem;
+        }
+        /* 1. Main Hero Headline */
+        .program-hero {
+            text-align: left; max-width: 800px; margin-bottom: 4rem;
+        }
+        .program-hero h1 {
+            font-size: 2.8rem; color: #071a23; margin-bottom: 1.5rem;
+            font-weight: 700; line-height: 1.2;
+        }
+        .program-hero p {
+            font-size: 1.2rem; color: #555; line-height: 1.7; margin-bottom: 2rem;
+        }
+
+        /* 2. Key Program Features Grid */
+        .features-overview {
+            margin-bottom: 4rem;
+        }
+        .features-overview h2 {
+            font-size: 2rem; color: #071a23; margin-bottom: 2rem; font-weight: 700;
+        }
+        .features-overview > p {
+            font-size: 1.1rem; color: #555; line-height: 1.7; margin-bottom: 2.5rem;
+            max-width: 800px;
+        }
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; margin-top: 1rem;
+        }
+        .feature-item {
+            padding: 1.5rem; border-left: 4px solid #689ae0; background: #faf8f1;
+            border-radius: 0 8px 8px 0;
+        }
+        .feature-item h3 {
+            color: #071a23; margin-bottom: 0.8rem; font-size: 1.2rem; font-weight: 700;
+        }
+        .feature-item p {
+            color: #555; font-size: 0.95rem; line-height: 1.6;
+        }
+
+        /* 3. The Core "Our Plans Go Beyond" Differentiator */
+        .program-differentiator {
+            padding: 3rem; background: #f8f9fa; border-radius: 12px;
+            margin: 3rem 0; border-left: 6px solid #689ae0;
+        }
+        .program-differentiator h2 {
+            font-size: 1.8rem; color: #071a23; margin-bottom: 1.5rem; font-weight: 700;
+        }
+        .program-differentiator p {
+            font-size: 1.1rem; color: #555; line-height: 1.7; margin-bottom: 1rem;
+        }
+        .program-differentiator p strong {
+            color: #071a23;
+        }
+
+        /* === CTA Section (Insurance Section Removed) === */
+        .cta-section { 
+            padding: 4rem 0; 
+            text-align: left; 
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            color: white;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        .cta-section h2 { 
+            font-size: 2rem; 
+            color: white; 
+            margin-bottom: 1rem; 
+            font-weight: 700; 
+        }
+        .cta-section p { 
+            font-size: 1.2rem; 
+            color: rgba(255, 255, 255, 0.95); 
+            margin-bottom: 2rem; 
+            max-width: 600px; 
+        }
+
+        /* === Button Styles === */
+        .btn {
+            display: inline-block; 
+            padding: 0.75rem 1.8rem; 
+            background: #689ae0; 
+            color: white;
+            text-decoration: none; 
+            border-radius: 4px; 
+            transition: background 0.3s;
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            border: none; 
+            cursor: pointer;
+        }
+        .btn:hover { background: #5a8ac8; }
+        .btn-large { font-size: 1rem; padding: 0.9rem 2.5rem; }
+        
+        /* Special button for CTA section */
+        .cta-section .btn {
+            background: white;
+            color: #689ae0;
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+        .cta-section .btn:hover {
+            background: #f0f0f0;
+        }
+
+        footer {
+            background: #071a23; 
+            color: white; 
+            padding: 2rem; 
+            text-align: center;
+            font-size: 0.9rem; 
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .program-hero h1 { font-size: 2.2rem; }
+            .program-hero p { font-size: 1.1rem; }
+            .features-overview h2, 
+            .program-differentiator h2, 
+            .cta-section h2 { 
+                font-size: 1.6rem; 
+            }
+            .program-differentiator, 
+            .feature-item { 
+                padding: 1.5rem; 
+            }
+            .main-container { 
+                padding: 0 1.5rem; 
+            }
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="providers.html">Providers</a></li>
+                <li><a href="new-patients.html">New patients</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="weight-loss.html" style="color: #689ae0; font-weight: 600;">Weight loss</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="locations.html">Locations</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="primary">Schedule an appointment</a>
+                <a href="#contact" class="secondary">Patient portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <!-- THE COMPLETE WEIGHT LOSS PROGRAM SECTION -->
+        <section class="program-section">
+
+            <!-- 1. Main Headline & Hook -->
+            <div class="program-hero">
+                <h1>Achieve your weight loss goals</h1>
+                <p>At Lightn Medical, we provide a comprehensive weight loss program designed to help you achieve your goals through personalized plans. Our experienced team is dedicated to delivering personalized care in a comfortable and welcoming environment.</p>
+                <a href="#contact" class="btn btn-large">Start Your Journey</a>
+            </div>
+
+            <!-- 2. Key Program Features/Overview -->
+            <div class="features-overview">
+                <h2>Our Weight Loss Program</h2>
+                <p>We offer a structured approach to weight management that combines medical expertise with sustainable lifestyle strategies. Our program includes:</p>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h3>Medical Assessment</h3>
+                        <p>Comprehensive health evaluation, lab work, and body composition analysis to understand your unique starting point.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Personalized Plan</h3>
+                        <p>A customized strategy involving nutrition, activity, and, when appropriate, FDA-approved medications.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Ongoing Medical Support</h3>
+                        <p>Regular check-ins with our healthcare team to monitor progress, adjust plans, and provide continuous motivation.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Long-Term Maintenance</h3>
+                        <p>Guidance on sustaining your weight loss and healthy habits for lifelong well-being.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. The Core Differentiator -->
+            <div class="program-differentiator">
+                <h2>Our Approach: More Than Medication</h2>
+                <p><strong>While many offer semaglutide injections for weight loss, our plans go beyond.</strong> We focus on your overall health, giving you valuable insights into how your body is working.</p>
+                <p>Medication can be a powerful tool, but it is most effective as part of a complete plan. We partner with you to address nutrition, metabolism, sleep, and stress—the full picture of your health. Let us be your partners on this path to a healthier you.</p>
+            </div>
+
+        </section>
+
+        <!-- Final Call to Action (No Insurance Section) -->
+        <section class="cta-section">
+            <h2>Ready for a Healthier You?</h2>
+            <p>Schedule an appointment online or visit us at one of our conveniently located clinics. Same-day appointments are available for consultations. We treat patients 18 years and older.</p>
+            <a href="#contact" class="btn btn-large">Schedule a Weight Loss Consultation</a>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
