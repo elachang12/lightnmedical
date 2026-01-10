@@ -38,18 +38,88 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #071a23;
+        /* Logo Area - Left Side */
+        .logo-area {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1.5rem;
+            min-width: 0;
+        }
+
+        /* Logo Styling */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
             z-index: 1001;
         }
 
-        .logo-icon {
-            font-size: 1.5rem;
+        .logo-line1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #071a23;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .logo-line2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2a6ecc;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        /* Contact Info Stacked Vertically - Right of Logo */
+        .header-contact-stacked {
+            display: none; /* Hidden on mobile by default */
+            flex-direction: column;
+            gap: 0.3rem;
+            border-left: 1px solid #eee;
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .contact-item-stacked {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .contact-item-stacked i {
+            color: #689ae0;
+            font-size: 0.8rem;
+            width: 16px;
+            text-align: center;
+        }
+
+        .contact-item-stacked a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .contact-item-stacked a:hover {
+            color: #689ae0;
+        }
+
+        .contact-item-stacked span {
+            font-size: 0.8rem;
+            line-height: 1.2;
+        }
+
+        /* Navigation and Right Side */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         /* Hamburger Menu */
@@ -235,20 +305,18 @@
         .hero {
             background: #faf8f1;
             color: #071a23;
-            padding: 2rem 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            align-items: center;
+            padding: 4rem 1.5rem;
+            text-align: center;
         }
 
         .hero-content {
-            max-width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1.2rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             font-weight: 700;
             line-height: 1.2;
         }
@@ -259,40 +327,32 @@
         }
 
         .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
             color: #555;
             line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-        }
-
-        .hero-image {
-            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
-            height: 300px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3.5rem;
-            order: -1;
         }
 
         .btn {
             display: inline-block;
-            padding: 0.9rem 1.8rem;
+            padding: 1rem 2.5rem;
             background: #689ae0;
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            transition: background 0.3s;
+            transition: all 0.3s;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.1rem;
             border: none;
             cursor: pointer;
             text-align: center;
@@ -300,16 +360,19 @@
 
         .btn:hover {
             background: #5a8ac8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(104, 154, 224, 0.2);
         }
 
         .btn-outline {
             background: transparent;
             color: #071a23;
-            border: 2px solid #d9edcc;
+            border: 2px solid #689ae0;
         }
 
         .btn-outline:hover {
-            background: #faf8f1;
+            background: rgba(104, 154, 224, 0.1);
+            box-shadow: 0 5px 15px rgba(104, 154, 224, 0.1);
         }
 
         .container {
@@ -319,7 +382,7 @@
         }
 
         .section {
-            padding: 3rem 0;
+            padding: 4rem 0;
         }
 
         .blue-section {
@@ -329,15 +392,15 @@
         }
 
         .blue-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
             font-weight: 700;
             line-height: 1.3;
         }
 
         .blue-section p {
-            font-size: 1.05rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
             opacity: 0.95;
             max-width: 800px;
             margin-left: auto;
@@ -354,34 +417,40 @@
 
         .feature-item {
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem;
             background: rgba(255,255,255,0.1);
             border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
         }
 
         .feature-icon {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background: rgba(255,255,255,0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             color: white;
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
 
         .feature-item h4 {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .feature-item p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             opacity: 0.95;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .feature-item a {
@@ -390,8 +459,8 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 4px;
             transition: background 0.3s;
             background: rgba(255,255,255,0.15);
@@ -406,107 +475,77 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .about-text h3 {
             color: #071a23;
             margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
         }
 
         .about-text p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: #555;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             line-height: 1.7;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
-            height: 300px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .insurance-section {
-            background: #d9edcc;
-            color: #071a23;
-            text-align: center;
-        }
-
-        .insurance-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .insurance-section p {
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-            color: #555;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .insurance-form {
-            max-width: 500px;
-            margin: 2rem auto;
-        }
-
-        .insurance-form input {
-            width: 100%;
-            padding: 0.9rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .insurance-form input::placeholder {
-            color: #999;
-        }
-
-        .insurance-form button {
-            width: 100%;
-            padding: 0.9rem;
-            background: #689ae0;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            font-size: 1rem;
-        }
-
-        .insurance-form button:hover {
-            background: #5a8ac8;
-        }
-
-        .insurance-disclaimer {
-            font-size: 0.85rem;
-            color: #555;
-            margin-top: 1.5rem;
-            font-style: italic;
         }
 
         footer {
             background: #071a23;
             color: white;
-            padding: 2rem 1.5rem;
+            padding: 3rem 1.5rem;
             text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-contact {
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .footer-contact div {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .footer-contact i {
+            color: #689ae0;
+        }
+
+        .footer-contact a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            color: #689ae0;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
+            opacity: 0.8;
         }
 
         /* Sticky Bottom Banner */
@@ -531,24 +570,35 @@
         }
 
         .sticky-bottom p {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 700;
             margin: 0;
         }
 
         .sticky-btn {
             background: #ff6b35;
             color: white;
-            padding: 12px 24px;
-            border-radius: 5px;
+            padding: 14px 28px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: background 0.3s;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .sticky-btn:hover {
             background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .sticky-btn::after {
+            content: "→";
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         /* Responsive Design */
@@ -565,6 +615,10 @@
                 display: none;
             }
             
+            .header-contact-stacked {
+                display: none; /* Keep hidden on mobile */
+            }
+            
             body {
                 padding-top: 60px;
             }
@@ -573,36 +627,56 @@
                 padding: 0.8rem 1.5rem;
             }
             
+            .logo-line1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-line2 {
+                font-size: 1.1rem;
+            }
+            
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
             .hero h1 {
                 font-size: 2rem;
             }
             
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
             .hero-buttons {
                 flex-direction: column;
+                align-items: center;
             }
             
             .hero-buttons .btn {
                 width: 100%;
-                text-align: center;
+                max-width: 300px;
             }
             
             .sticky-container {
                 flex-direction: column;
                 text-align: center;
-                gap: 10px;
+                gap: 12px;
             }
             
             .sticky-bottom p {
-                font-size: 1rem;
+                font-size: 1.3rem;
             }
             
             .sticky-btn {
                 width: 100%;
-                max-width: 250px;
+                max-width: 280px;
+                padding: 15px 25px;
+                font-size: 1.2rem;
+                justify-content: center;
             }
             
             body {
-                padding-bottom: 110px;
+                padding-bottom: 130px;
             }
         }
 
@@ -615,35 +689,53 @@
                 display: none;
             }
             
-            .hero {
-                grid-template-columns: 1fr 1fr;
-                padding: 4rem 2rem;
-            }
-            
-            .hero-image {
-                order: 0;
-                height: 400px;
+            .header-contact-stacked {
+                display: flex; /* Show stacked contact info on desktop */
             }
             
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             .features-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 3rem;
-            }
-            
-            .about-image {
-                height: 400px;
+                gap: 2.5rem;
             }
             
             body {
-                padding-bottom: 85px;
+                padding-bottom: 90px;
+            }
+            
+            .sticky-bottom p {
+                font-size: 1.3rem;
+            }
+            
+            .sticky-btn {
+                padding: 15px 32px;
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .header-contact-stacked {
+                max-width: 200px;
+            }
+            
+            .contact-item-stacked {
+                font-size: 0.75rem;
+            }
+            
+            .contact-item-stacked a,
+            .contact-item-stacked span {
+                font-size: 0.75rem;
+            }
+            
+            .logo-line1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-line2 {
+                font-size: 1.1rem;
             }
         }
 
@@ -652,26 +744,39 @@
                 font-size: 1.8rem;
             }
             
-            .hero-image {
-                height: 250px;
-                font-size: 2.5rem;
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
             }
             
             .blue-section h2,
-            .insurance-section h2 {
-                font-size: 1.6rem;
+            .about-text h3 {
+                font-size: 1.8rem;
             }
             
             .feature-item {
-                padding: 1.2rem;
+                padding: 1.5rem;
             }
             
             .sticky-bottom {
-                padding: 12px;
+                padding: 15px 12px;
+            }
+            
+            .sticky-bottom p {
+                font-size: 1.25rem;
+            }
+            
+            .sticky-btn {
+                padding: 14px 22px;
+                font-size: 1.15rem;
             }
             
             body {
-                padding-bottom: 120px;
+                padding-bottom: 140px;
             }
         }
     </style>
@@ -679,36 +784,53 @@
 <body>
     <header>
         <nav>
-            <div class="logo">
-                <span class="logo-icon">💙</span>
-                <span>Lightn Medical</span>
+            <!-- Left Side: Logo + Stacked Contact Info -->
+            <div class="logo-area">
+                <!-- Logo -->
+                <div class="logo-container">
+                    <div class="logo-line1">Lightn</div>
+                    <div class="logo-line2">Medical</div>
+                </div>
+                
+                <!-- Stacked Contact Info - Desktop only -->
+                <div class="header-contact-stacked">
+                    <div class="contact-item-stacked">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>557 Prospect Ave</span>
+                    </div>
+                    <div class="contact-item-stacked">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+18606000013">(860) 600-0013</a>
+                    </div>
+                    <div class="contact-item-stacked">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@lightnmedical.com">info@lightnmedical.com</a>
+                    </div>
+                </div>
             </div>
-    Address:
- </div>
- Phone:
- </div>
-Email:
- </div>
             
-            <button class="hamburger" id="hamburgerBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-links">
-                <li><a href="/services">Services</a></li>
-                <li><a href="/providers">Providers</a></li>
-                <li><a href="/new-patients">New patients</a></li>
-                <li><a href="/about">About us</a></li>
-                <li><a href="/weight-loss">Weight loss</a></li>
-                <li><a href="/faq">FAQ</a></li>
-                <li><a href="/locations">Locations</a></li>
-            </ul>
-            
-            <div class="nav-cta">
-                <a href="/contact" class="primary">Schedule an appointment</a>
-                <a href="/contact" class="secondary">Patient portal</a>
+            <!-- Right Side: Navigation + CTA -->
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/providers">Providers</a></li>
+                    <li><a href="/new-patients">New patients</a></li>
+                    <li><a href="/about">About us</a></li>
+                    <li><a href="/weight-loss">Weight loss</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/locations">Locations</a></li>
+                </ul>
+                
+                <div class="nav-cta">
+                    <a href="/contact" class="primary">Schedule an appointment</a>
+                    <a href="/contact" class="secondary">Patient portal</a>
+                </div>
+                
+                <button class="hamburger" id="hamburgerBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
         
@@ -728,6 +850,22 @@ Email:
                 <a href="/contact" class="primary">Schedule an appointment</a>
                 <a href="/contact" class="secondary">Patient portal</a>
             </div>
+            
+            <!-- Mobile Contact Info -->
+            <div style="margin-top: 2rem; text-align: center; color: #071a23;">
+                <div style="margin-bottom: 1rem;">
+                    <i class="fas fa-map-marker-alt" style="color: #689ae0; margin-right: 0.5rem;"></i>
+                    <span>557 Prospect Ave, West Hartford, CT 06105</span>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <i class="fas fa-phone" style="color: #689ae0; margin-right: 0.5rem;"></i>
+                    <a href="tel:+18606000013" style="color: #071a23; text-decoration: none;">(860) 600-0013</a>
+                </div>
+                <div>
+                    <i class="fas fa-envelope" style="color: #689ae0; margin-right: 0.5rem;"></i>
+                    <a href="mailto:info@lightnmedical.com" style="color: #071a23; text-decoration: none;">info@lightnmedical.com</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -741,7 +879,6 @@ Email:
                 <a href="/contact" class="btn btn-outline">Find a location</a>
             </div>
         </div>
-        <div class="hero-image">🏥</div>
     </section>
 
     <!-- Primary Care Overview Section -->
@@ -754,7 +891,7 @@ Email:
                 <div class="feature-item">
                     <div class="feature-icon">🏥</div>
                     <h4>Primary care</h4>
-                    <p>See what makes Lightn the foremost primary care clinic for adults 18yo+ in Austin and the surrounding areas.</p>
+                    <p>See what makes Lightn the foremost primary care clinic for adults 18yo+ in West Hartford and the surrounding areas.</p>
                     <a href="/services">Schedule a visit</a>
                 </div>
                 
@@ -787,23 +924,37 @@ Email:
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Providing quality care for the Austin community</h3>
-                    <p>At Lightn Medical, we are dedicated to delivering exceptional primary care services to our patients in the greater Austin area. Our team of experienced healthcare professionals is committed to providing personalized and comprehensive medical care in a compassionate and welcoming environment.</p>
+                    <h3>Providing quality care for the greater Hartford community</h3>
+                    <p>At Lightn Medical, we are dedicated to delivering exceptional primary care services to our patients in the greater Hartford area. Our team of experienced healthcare professionals is committed to providing personalized and comprehensive medical care in a compassionate and welcoming environment.</p>
                     <a href="/services" class="btn" style="margin-top: 1.5rem;">Learn more</a>
-                </div>
-                <div class="about-image">
-                    🏥
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy;2026, Lightn Medical. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
-                <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
-            </p>
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>557 Prospect Ave, West Hartford, CT 06105</span>
+                </div>
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+18606000013">(860) 600-0013</a>
+                </div>
+                <div>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@lightnmedical.com">info@lightnmedical.com</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy;2026, Lightn Medical. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+                </p>
+            </div>
         </div>
     </footer>
 
@@ -811,7 +962,7 @@ Email:
     <div class="sticky-bottom">
         <div class="sticky-container">
             <p>Schedule an appointment today!</p>
-            <a href="/appointment" class="sticky-btn">Schedule Now →</a>
+            <a href="/appointment" class="sticky-btn">Schedule Now</a>
         </div>
     </div>
 
@@ -820,93 +971,76 @@ Email:
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         
-        hamburgerBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
-        });
-        
-        // Close mobile menu when clicking on a link
-        const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-cta a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburgerBtn.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
             });
-        });
-        
-        // Close mobile menu when clicking outside
-        mobileMenu.addEventListener('click', function(e) {
-            if (e.target === mobileMenu) {
-                hamburgerBtn.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Close mobile menu on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                hamburgerBtn.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Sticky bottom banner close functionality
-        const stickyBanner = document.querySelector('.sticky-bottom');
-        const closeBanner = document.createElement('button');
-        closeBanner.innerHTML = '×';
-        closeBanner.style.cssText = `
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            background: white;
-            color: #2a6ecc;
-            border: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        `;
-        
-        closeBanner.addEventListener('click', function() {
-            stickyBanner.style.transform = 'translateY(100%)';
-            setTimeout(() => {
-                stickyBanner.style.display = 'none';
-                document.body.style.paddingBottom = '0';
-            }, 300);
-            localStorage.setItem('bannerClosed', 'true');
-        });
-        
-        stickyBanner.style.position = 'relative';
-        stickyBanner.appendChild(closeBanner);
-        
-        // Check if banner was previously closed
-        if (localStorage.getItem('bannerClosed') === 'true') {
-            stickyBanner.style.display = 'none';
-            document.body.style.paddingBottom = '0';
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-cta a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
         }
         
-        // Hide/show banner on scroll
+        // Hide/show sticky banner on scroll
         let lastScrollTop = 0;
-        window.addEventListener('scroll', function() {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st > lastScrollTop && st > 100) {
-                // Scrolling down - hide banner
-                stickyBanner.style.transform = 'translateY(100%)';
-            } else if (st < lastScrollTop) {
-                // Scrolling up - show banner
-                stickyBanner.style.transform = 'translateY(0)';
-            }
-            lastScrollTop = st <= 0 ? 0 : st;
-        });
+        const stickyBanner = document.querySelector('.sticky-bottom');
+        
+        if (stickyBanner) {
+            window.addEventListener('scroll', function() {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Only apply hide/show if we're not at the very top or bottom
+                if (st > 50 && st + window.innerHeight < document.documentElement.scrollHeight - 50) {
+                    if (st > lastScrollTop && st > 100) {
+                        // Scrolling down - hide banner
+                        stickyBanner.style.transform = 'translateY(100%)';
+                    } else if (st < lastScrollTop) {
+                        // Scrolling up - show banner
+                        stickyBanner.style.transform = 'translateY(0)';
+                    }
+                }
+                
+                lastScrollTop = st <= 0 ? 0 : st;
+            });
+            
+            // Show banner again when user reaches bottom of page
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight;
+                const clientHeight = document.documentElement.clientHeight;
+                
+                // If user is near bottom of page, show the banner
+                if (scrollHeight - scrollTop - clientHeight < 100) {
+                    stickyBanner.style.transform = 'translateY(0)';
+                }
+            });
+        }
     </script>
 </body>
 </html>
