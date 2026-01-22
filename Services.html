@@ -941,16 +941,116 @@
             </div>
         </div>
     </section>
-
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
-                <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
-            </p>
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>557 Prospect Ave, West Hartford, CT 06105</span>
+                </div>
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+18606000013">(860) 600-0013</a>
+                </div>
+                <div>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@lightnmedical.com">info@lightnmedical.com</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy;2026, Lightn Medical. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+                </p>
+            </div>
         </div>
     </footer>
+
+    <!-- Sticky Bottom Banner -->
+    <div class="sticky-bottom">
+        <div class="sticky-container">
+            <p>Schedule an appointment today!</p>
+            <a href="/appointment" class="sticky-btn">Schedule Now</a>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-cta a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+        
+        // Hide/show sticky banner on scroll
+        let lastScrollTop = 0;
+        const stickyBanner = document.querySelector('.sticky-bottom');
+        
+        if (stickyBanner) {
+            window.addEventListener('scroll', function() {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Only apply hide/show if we're not at the very top or bottom
+                if (st > 50 && st + window.innerHeight < document.documentElement.scrollHeight - 50) {
+                    if (st > lastScrollTop && st > 100) {
+                        // Scrolling down - hide banner
+                        stickyBanner.style.transform = 'translateY(100%)';
+                    } else if (st < lastScrollTop) {
+                        // Scrolling up - show banner
+                        stickyBanner.style.transform = 'translateY(0)';
+                    }
+                }
+                
+                lastScrollTop = st <= 0 ? 0 : st;
+            });
+            
+            // Show banner again when user reaches bottom of page
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight;
+                const clientHeight = document.documentElement.clientHeight;
+                
+                // If user is near bottom of page, show the banner
+                if (scrollHeight - scrollTop - clientHeight < 100) {
+                    stickyBanner.style.transform = 'translateY(0)';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
-
 
