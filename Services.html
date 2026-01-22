@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - Lightn Medical</title>
- 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -17,14 +15,13 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            overflow-x: hidden;
+            background: #faf8f1;
         }
 
-        /* Mobile-First Header */
         header {
             background: white;
             color: #071a23;
-            padding: 1rem 1.5rem;
+            padding: 1rem 2rem;
             position: fixed;
             top: 0;
             left: 0;
@@ -34,144 +31,42 @@
         }
 
         nav {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: nowrap;
         }
 
-        /* Logo Area - Left Side */
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            min-width: 0;
-        }
-
-        /* Logo Styling */
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-            z-index: 1001;
-        }
-
-        .logo-line1 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #071a23;
-            letter-spacing: -0.5px;
-            line-height: 1;
-            white-space: nowrap;
-        }
-
-        .logo-line2 {
+        .logo {
             font-size: 1.3rem;
-            font-weight: 600;
-            color: #2a6ecc;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-            margin-top: 2px;
-            white-space: nowrap;
-        }
-
-        /* Contact Info Stacked Vertically - Right of Logo */
-        .header-contact-stacked {
-            display: none; /* Hidden on mobile by default */
-            flex-direction: column;
-            gap: 0.3rem;
-            border-left: 1px solid #eee;
-            padding-left: 1.5rem;
-            margin-left: 0.5rem;
-        }
-
-        .contact-item-stacked {
+            font-weight: 700;
+            color: #071a23;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.8rem;
-            color: #555;
-            white-space: nowrap;
         }
 
-        .contact-item-stacked i {
-            color: #689ae0;
-            font-size: 0.8rem;
-            width: 16px;
-            text-align: center;
-        }
-
-        .contact-item-stacked a {
-            color: #555;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.8rem;
-        }
-
-        .contact-item-stacked a:hover {
-            color: #689ae0;
-        }
-
-        .contact-item-stacked span {
-            font-size: 0.8rem;
-            line-height: 1.2;
-        }
-
-        /* Navigation and Right Side */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            width: 30px;
-            height: 24px;
-            justify-content: space-between;
-            background: transparent;
-            border: none;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: #071a23;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(10.5px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-10.5px) rotate(-45deg);
-        }
-
-        /* Navigation Links */
         .nav-links {
             display: flex;
+            flex-direction: row;
+            gap: 0;
             list-style: none;
-            align-items: center;
+            text-align: center;
+            white-space: nowrap;
+            flex-wrap: nowrap;
         }
 
         .nav-links li {
-            margin: 0 0.75rem;
+            border-right: none;
+            padding: 0 1rem;
         }
 
         .nav-links a {
             color: #071a23;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: opacity 0.3s;
             display: block;
             padding: 0.5rem 0;
             font-size: 0.95rem;
@@ -180,14 +75,15 @@
         }
 
         .nav-links a:hover {
-            color: #689ae0;
+            opacity: 0.7;
         }
 
-        /* CTA Buttons */
         .nav-cta {
             display: flex;
             gap: 1rem;
             align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         .nav-cta a {
@@ -213,571 +109,143 @@
             border: 1px solid #d9edcc;
         }
 
-        .nav-cta a.secondary:hover {
-            background: #f8f9fa;
-        }
-
-        /* Mobile Navigation Overlay */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.98);
-            z-index: 999;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 20px 40px;
-        }
-
-        .mobile-menu-overlay.active {
-            display: flex;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            text-align: center;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .mobile-nav-links li {
-            margin: 1rem 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-overlay.active .mobile-nav-links li {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mobile-nav-links a {
-            color: #071a23;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 600;
-            padding: 0.75rem 0;
-            display: block;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .mobile-nav-links a:hover {
-            color: #689ae0;
-        }
-
-        .mobile-cta {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .mobile-cta a {
-            padding: 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-
-        .mobile-cta a.primary {
-            background: #689ae0;
-            color: white;
-        }
-
-        .mobile-cta a.secondary {
-            color: #071a23;
-            border: 2px solid #689ae0;
-        }
-
         body {
             padding-top: 70px;
         }
 
-        /* Hero Section */
-        .hero {
-            background: #faf8f1;
-            color: #071a23;
-            padding: 4rem 1.5rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: #689ae0;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            color: #555;
-            line-height: 1.7;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
         .btn {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 0.75rem 1.8rem;
             background: #689ae0;
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.3s;
+            transition: background 0.3s;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             border: none;
             cursor: pointer;
-            text-align: center;
         }
 
         .btn:hover {
             background: #5a8ac8;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(104, 154, 224, 0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #071a23;
-            border: 2px solid #689ae0;
-        }
-
-        .btn-outline:hover {
-            background: rgba(104, 154, 224, 0.1);
-            box-shadow: 0 5px 15px rgba(104, 154, 224, 0.1);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         .section {
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
 
-        .blue-section {
-            background: #689ae0;
-            color: white;
+        .section-title {
             text-align: center;
-        }
-
-        .blue-section h2 {
             font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .blue-section p {
-            font-size: 1.15rem;
             margin-bottom: 3rem;
-            opacity: 0.95;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            color: #071a23;
+            font-weight: 700;
         }
 
-        .features-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
 
-        .feature-item {
-            text-align: center;
+        .service-card {
+            background: white;
             padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            transition: transform 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .feature-item:hover {
+        .service-card:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
         }
 
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.2);
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #d9edcc;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: white;
-            font-size: 2.5rem;
-        }
-
-        .feature-item h4 {
-            margin-bottom: 1rem;
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
-
-        .feature-item p {
-            font-size: 1.05rem;
-            opacity: 0.95;
             margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
 
-        .feature-item a {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.8rem 1.8rem;
-            border-radius: 4px;
-            transition: background 0.3s;
-            background: rgba(255,255,255,0.15);
-        }
-
-        .feature-item a:hover {
-            background: rgba(255,255,255,0.25);
-        }
-
-        .about-section {
-            background: #faf8f1;
-        }
-
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-text h3 {
+        .service-card h3 {
             color: #071a23;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
 
-        .about-text p {
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .services-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #689ae0 0%, #5a8ac8 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .services-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-cta p {
             margin-bottom: 2rem;
-            color: #555;
-            font-size: 1.15rem;
-            line-height: 1.7;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-cta .btn {
+            background: white;
+            color: #689ae0;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+        }
+
+        .services-cta .btn:hover {
+            background: #f0f0f0;
         }
 
         footer {
             background: #071a23;
             color: white;
-            padding: 3rem 1.5rem;
+            padding: 2rem;
             text-align: center;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-contact {
-            margin-bottom: 2rem;
-        }
-
-        .footer-contact h4 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            color: #fff;
-        }
-
-        .footer-contact div {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .footer-contact i {
-            color: #689ae0;
-        }
-
-        .footer-contact a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-contact a:hover {
-            color: #689ae0;
-        }
-
-        .copyright {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            opacity: 0.8;
+            margin-top: 4rem;
         }
 
-        /* Sticky Bottom Banner */
-        .sticky-bottom {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #2a6ecc;
-            color: white;
-            padding: 15px;
-            z-index: 999;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .sticky-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .sticky-bottom p {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .sticky-btn {
-            background: #ff6b35;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .sticky-btn:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-        }
-
-        .sticky-btn::after {
-            content: "→";
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-            
             .nav-links {
                 display: none;
             }
             
-            .nav-cta {
-                display: none;
-            }
-            
-            .header-contact-stacked {
-                display: none; /* Keep hidden on mobile */
-            }
-            
-            body {
-                padding-top: 60px;
-            }
-            
-            header {
-                padding: 0.8rem 1.5rem;
-            }
-            
-            .logo-line1 {
-                font-size: 1.4rem;
-            }
-            
-            .logo-line2 {
-                font-size: 1.1rem;
-            }
-            
-            .hero {
-                padding: 3rem 1.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-buttons .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .sticky-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px;
-            }
-            
-            .sticky-bottom p {
-                font-size: 1.3rem;
-            }
-            
-            .sticky-btn {
-                width: 100%;
-                max-width: 280px;
-                padding: 15px 25px;
-                font-size: 1.2rem;
-                justify-content: center;
-            }
-            
-            body {
-                padding-bottom: 130px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .mobile-menu-overlay {
-                display: none !important;
-            }
-            
-            .hamburger {
-                display: none;
-            }
-            
-            .header-contact-stacked {
-                display: flex; /* Show stacked contact info on desktop */
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 2.5rem;
-            }
-            
-            body {
-                padding-bottom: 90px;
-            }
-            
-            .sticky-bottom p {
-                font-size: 1.3rem;
-            }
-            
-            .sticky-btn {
-                padding: 15px 32px;
-                font-size: 1.15rem;
-            }
-        }
-
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .header-contact-stacked {
-                max-width: 200px;
-            }
-            
-            .contact-item-stacked {
-                font-size: 0.75rem;
-            }
-            
-            .contact-item-stacked a,
-            .contact-item-stacked span {
-                font-size: 0.75rem;
-            }
-            
-            .logo-line1 {
-                font-size: 1.4rem;
-            }
-            
-            .logo-line2 {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
+            .section-title {
                 font-size: 1.8rem;
             }
             
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                padding: 0.9rem 1.8rem;
-                font-size: 1rem;
-            }
-            
-            .blue-section h2,
-            .about-text h3 {
-                font-size: 1.8rem;
-            }
-            
-            .feature-item {
-                padding: 1.5rem;
-            }
-            
-            .sticky-bottom {
-                padding: 15px 12px;
-            }
-            
-            .sticky-bottom p {
-                font-size: 1.25rem;
-            }
-            
-            .sticky-btn {
-                padding: 14px 22px;
-                font-size: 1.15rem;
-            }
-            
-            body {
-                padding-bottom: 140px;
+            .services-cta {
+                padding: 2rem 1rem;
             }
         }
     </style>
@@ -785,109 +253,33 @@
 <body>
     <header>
         <nav>
-            <!-- Left Side: Logo + Stacked Contact Info -->
-            <div class="logo-area">
-                <!-- Logo -->
-                <div class="logo-container">
-                    <div class="logo-line1">Lightn</div>
-                    <div class="logo-line2">Medical</div>
-                </div>
-                
-                <!-- Stacked Contact Info - Desktop only -->
-                <div class="header-contact-stacked">
-                    <div class="contact-item-stacked">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>557 Prospect Ave</span>
-                    </div>
-                    <div class="contact-item-stacked">
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:+18606000013">(860) 600-0013</a>
-                    </div>
-                    <div class="contact-item-stacked">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:info@lightnmedical.com">info@lightnmedical.com</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Right Side: Navigation + CTA -->
-            <div class="nav-right">
-                
-<ul class="nav-links">
-                    <li><a href="/services">Services</a></li>
-                    <li><a href="/providers">Providers</a></li>
-                    <li><a href="/new-patients">New patients</a></li>
-                    <li><a href="/about">About us</a></li>
-                    <li><a href="/weight-loss">Medical weight management</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                </ul>
-                
-                <div class="nav-cta">
-                    <a href="/contact" class="primary">Schedule an appointment</a>
-                    <a href="/contact" class="secondary">Patient portal</a>
-                </div>
-                
-                <button class="hamburger" id="hamburgerBtn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-        
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenu">
-            <ul class="mobile-nav-links">
-                <li><a href="/services">Services</a></li>
-                <li><a href="/providers">Providers</a></li>
-                <li><a href="/new-patients">New Patients</a></li>
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/weight-loss">Medical weight management</a></li>
-                <li><a href="/faq">FAQ</a></li>
+            <div class="logo">💙 Lightn Medical</div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/services.html" style="color: #689ae0; font-weight: 600;">Services</a></li>
+                <li><a href="/providers.html">Providers</a></li>
+                <li><a href="/new-patients.html">New patients</a></li>
+                <li><a href="/about.html">About us</a></li>
+                <li><a href="/weight-loss.html">Medical weight management</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
             </ul>
-            
-            <div class="mobile-cta">
+            <div class="nav-cta">
                 <a href="/contact" class="primary">Schedule an appointment</a>
                 <a href="/contact" class="secondary">Patient portal</a>
             </div>
-            
-            <!-- Mobile Contact Info -->
-            <div style="margin-top: 2rem; text-align: center; color: #071a23;">
-                <div style="margin-bottom: 1rem;">
-                    <i class="fas fa-map-marker-alt" style="color: #689ae0; margin-right: 0.5rem;"></i>
-                    <span>557 Prospect Ave, West Hartford, CT 06105</span>
-                </div>
-                <div style="margin-bottom: 1rem;">
-                    <i class="fas fa-phone" style="color: #689ae0; margin-right: 0.5rem;"></i>
-                    <a href="tel:+18606000013" style="color: #071a23; text-decoration: none;">(860) 600-0013</a>
-                </div>
-                <div>
-                    <i class="fas fa-envelope" style="color: #689ae0; margin-right: 0.5rem;"></i>
-                    <a href="mailto:info@lightnmedical.com" style="color: #071a23; text-decoration: none;">info@lightnmedical.com</a>
-                </div>
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>PRIMARY CARE SERVICES</h1>
-<h1>Expert care for adults in the greater Hartford community and beyond</h1>
-            <p>At Lightn Medical, we provide a broad range of primary care services for adults 18 years and older. From preventive wellness and chronic condition management to weight management, our goal is to support your overall well-being with high-quality, personalized care.</p>
- <div class="hero-buttons">
-                <a href="/contact" class="btn">Schedule an appointment</a>
-            </div>
-        </div>
-    </section>
-
-<!-- Services Overview Section -->
-    <section class="section blue-section">
+    <!-- Services Section Only -->
+    <section class="section">
         <div class="container">
-            <h2>Services to support your health</h2>
-            <p>We tailor our services to meet each patient’s unique needs. Whether you’re here for a routine check-up, chronic disease management, or a same-day concern, you can expect compassionate, evidence-based care that puts your health first.</p>
-
-          <section class="section white-section">      
+            <h1 class="section-title">Our Medical Services</h1>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #555; font-size: 1.1rem;">
+                At Lightn Medical, we provide comprehensive healthcare services tailored to meet your needs. 
+                Our experienced team is dedicated to delivering personalized care in a comfortable and welcoming 
+                environment for adult patients 18 years and older.
+            </p>
+            
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">⚖️</div>
@@ -935,121 +327,23 @@
             </div>
             
             <div class="services-cta">
-                
+                <h3>Ready to Experience Our Services?</h3>
+                <p>Take the first step toward better health. Schedule an appointment with our experienced 
+                   healthcare providers today.</p>
                 <a href="/contact" class="btn">Schedule an Appointment</a>
             </div>
         </div>
     </section>
+
     <footer>
-        <div class="footer-container">
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <div>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>557 Prospect Ave, West Hartford, CT 06105</span>
-                </div>
-                <div>
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+18606000013">(860) 600-0013</a>
-                </div>
-                <div>
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:info@lightnmedical.com">info@lightnmedical.com</a>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy;2026, Lightn Medical. All rights reserved.</p>
-                <p style="margin-top: 0.5rem;">
-                    <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
-                </p>
-            </div>
+        <div class="container">
+            <p>&copy; 2025 Lightn Medical Center. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                <a href="/index.html" style="color: white; text-decoration: underline;">Back to Home</a>
+            </p>
         </div>
     </footer>
-
-    <!-- Sticky Bottom Banner -->
-    <div class="sticky-bottom">
-        <div class="sticky-container">
-            <p>Schedule an appointment today!</p>
-            <a href="/appointment" class="sticky-btn">Schedule Now</a>
-        </div>
-    </div>
-
-    <script>
-        // Mobile Menu Toggle
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        if (hamburgerBtn && mobileMenu) {
-            hamburgerBtn.addEventListener('click', function() {
-                this.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
-            });
-            
-            // Close mobile menu when clicking on a link
-            const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-cta a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    hamburgerBtn.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            });
-            
-            // Close mobile menu when clicking outside
-            mobileMenu.addEventListener('click', function(e) {
-                if (e.target === mobileMenu) {
-                    hamburgerBtn.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // Close mobile menu on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    hamburgerBtn.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        }
-        
-        // Hide/show sticky banner on scroll
-        let lastScrollTop = 0;
-        const stickyBanner = document.querySelector('.sticky-bottom');
-        
-        if (stickyBanner) {
-            window.addEventListener('scroll', function() {
-                const st = window.pageYOffset || document.documentElement.scrollTop;
-                
-                // Only apply hide/show if we're not at the very top or bottom
-                if (st > 50 && st + window.innerHeight < document.documentElement.scrollHeight - 50) {
-                    if (st > lastScrollTop && st > 100) {
-                        // Scrolling down - hide banner
-                        stickyBanner.style.transform = 'translateY(100%)';
-                    } else if (st < lastScrollTop) {
-                        // Scrolling up - show banner
-                        stickyBanner.style.transform = 'translateY(0)';
-                    }
-                }
-                
-                lastScrollTop = st <= 0 ? 0 : st;
-            });
-            
-            // Show banner again when user reaches bottom of page
-            window.addEventListener('scroll', function() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight;
-                const clientHeight = document.documentElement.clientHeight;
-                
-                // If user is near bottom of page, show the banner
-                if (scrollHeight - scrollTop - clientHeight < 100) {
-                    stickyBanner.style.transform = 'translateY(0)';
-                }
-            });
-        }
-    </script>
 </body>
 </html>
+
 
